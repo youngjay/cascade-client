@@ -29,7 +29,7 @@ describe('combiner decorator', function() {
         var spy = sinon.spy(fetcher, 'fetch');      
 
         var cascade = new Cascade(new CombineDecorator(fetcher, {
-            throttlePeriod: 10
+            wait: 10
         }));
 
         checkPromise(cascade.query([{
@@ -52,7 +52,7 @@ describe('combiner decorator', function() {
         var spy = sinon.spy(fetcher, 'fetch');      
 
         var cascade = new Cascade(new CombineDecorator(fetcher, {
-            throttlePeriod: 20
+            wait: 20
         }));
 
         var p1 = cascade.query([{
@@ -83,7 +83,7 @@ describe('combiner decorator', function() {
         clock.restore();
     })
 
-    it('should combine multiple fetches in multiple shot if duration large then throttlePeriod', function(done) {
+    it('should combine multiple fetches in multiple shot if duration large then wait', function(done) {
         var clock = sinon.useFakeTimers();
 
         var fetcher = new LocalFetcher(repo);
@@ -91,7 +91,7 @@ describe('combiner decorator', function() {
         var spy = sinon.spy(fetcher, 'fetch');      
 
         var cascade = new Cascade(new CombineDecorator(fetcher, {
-            throttlePeriod: 20
+            wait: 20
         }));
 
         var p1 = cascade.query([{
@@ -131,7 +131,7 @@ describe('combiner decorator', function() {
         var spy = sinon.spy(fetcher, 'fetch');      
 
         var cascade = new Cascade(new CombineDecorator(fetcher, {
-            throttlePeriod: 500
+            wait: 500
         }));
 
         var p1 = cascade.query([{
