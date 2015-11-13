@@ -13,7 +13,7 @@ describe('field', function() {
             type: 'User',
             category: 'query'
         })).equal('user')
-    })
+    });
 
     it('should return type and category', function() {
         expect(getFieldAs({
@@ -21,4 +21,4 @@ describe('field', function() {
             category: 'load'
         })).equal('user_load')
     })
-})
+});
