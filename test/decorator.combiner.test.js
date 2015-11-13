@@ -83,6 +83,47 @@ describe('combiner decorator', function() {
         clock.restore();
     })
 
+    it('should combine multiple fetches in multiple shot if duration large then throttlePeriod', function(done) {
+        var clock = sinon.useFakeTimers();
+
+        var fetcher = new LocalFetcher(repo);
+
+        var spy = sinon.spy(fetcher, 'fetch');      
+
+        var cascade = new Cascade(new CombineDecorator(fetcher, {
+            throttlePeriod: 20
+        }));
+
+        var p1 = cascade.query([{
+            type: 'User'
+        }]);
+
+        clock.tick(30);
+
+        var p2 = cascade.query([{
+            type: 'Book'
+        }]);
+
+        clock.tick(30);
+
+        checkPromise(Promise.all([p1, p2]), done, function(data) {
+            expect(spy.calledTwice).to.be.true;
+            expect(data).deep.equal([{
+                user: {
+                    name: 'Jay'
+                }
+            },{
+                book: {
+                    name: 'tobe'
+                }
+            }])
+        })
+
+        clock.tick(30);
+
+        clock.restore();
+    })
+
     it('should combine multiple fetches with same as or same name', function(done) {
 
         var fetcher = new LocalFetcher(repo);

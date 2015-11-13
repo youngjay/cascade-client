@@ -11,8 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^3.10.1",
-    "mixin-class": "^2.0.2",
-    "whatwg-fetch": "^0.10.1"
+    "mixin-class": "^2.0.2"
   },
   "devDependencies": {
     "chai": "^3.4.0",
