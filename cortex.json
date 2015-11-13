@@ -1,0 +1,27 @@
+{
+  "name": "cascade-client",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "assert": "*"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "mixin-class": "^2.0.2"
+  },
+  "repository": "git://code.dianpingoa.com/cascade/cascade-client.git",
+  "keywords": [
+    "cascade",
+    "client"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "yangjie",
+    "email": "hiyoungjay@gmail.com"
+  },
+  "bugs": {
+    "url": "http://code.dianpingoa.com/cascade/cascade-client/issues"
+  },
+  "homepage": "http://code.dianpingoa.com/cascade/cascade-client"
+}

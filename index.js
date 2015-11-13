@@ -1,1 +1,5 @@
-module.exports = 1
+module.exports = {
+    Cascade: require('./lib/cascade'),
+    LocalFetcher: require('./lib/fetcher/local'),
+    Combiner: require('./lib/fetcher/combiner')
+};
