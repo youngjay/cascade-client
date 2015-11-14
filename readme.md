@@ -18,6 +18,8 @@ decorator类似于java的一系列stream, 会对传入的fetcher附加一些功�
 
 Combiner: 可以合并一定时间段内的cascade请求
 
+ErrorRejector: 可以把返回数据里面的错误提取出来，走到异常处理流程
+
 ## cascade
 
 cascade是最终使用的接口，他有一个query方法
