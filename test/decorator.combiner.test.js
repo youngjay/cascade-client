@@ -131,7 +131,7 @@ describe('combiner decorator', function() {
         var spy = sinon.spy(fetcher, 'fetch');      
 
         var cascade = new Cascade(new CombineDecorator(fetcher, {
-            wait: 500
+            wait: 20
         }));
 
         var p1 = cascade.query([{
