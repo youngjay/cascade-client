@@ -13,9 +13,7 @@ describe('error rejector', function() {
    
     var repo = {
         User: {
-            query: {
-                name: '[Cascade Error] ' + ERROR
-            }
+            query: '[Cascade Error] ' + ERROR
         },
 
         Car: {

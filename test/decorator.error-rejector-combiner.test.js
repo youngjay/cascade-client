@@ -15,9 +15,7 @@ describe('error rejector combiner', function() {
    
     var repo = {
         User: {
-            query: {
-                name: '[Cascade Error] ' + ERROR
-            }
+            query: '[Cascade Error] ' + ERROR
         },
 
         Car: {
@@ -78,7 +76,8 @@ describe('error rejector combiner', function() {
                 check(ex);
             }
             return Promise.reject(e)
-        }).then(function() {
+        }).then(function(data) {
+            console.log(data)
             check('p1 should not resolve')
         });
 
