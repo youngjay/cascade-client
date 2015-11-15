@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var getFieldAs = require('../lib/util/get-field-as');
+var getFieldAs = require('../').getFieldAs;
 
 describe('field', function() {
     it('should return type when no category is specified', function() {

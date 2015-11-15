@@ -1,10 +1,10 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
-var Cascade = require('../lib/cascade');
-var LocalFetcher = require('../lib/fetcher/local');
+var Cascade = require('../').Cascade;
+var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
-var getFieldAs = require('../lib/util/get-field-as');
+var getFieldAs = require('../').getFieldAs;
 
 describe('local fetcher', function() {
     it('local repo for category as return value', function(done) {

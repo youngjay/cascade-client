@@ -3,7 +3,7 @@
 //
 //var CacheDecorator = require('./cache');
 //var checkPromise = require('./check-promise');
-//var getFieldAs = require('../lib/util/get-field-as');
+//var getFieldAs = require('../').getFieldAs;
 //
 //describe('cache cascade', function() {
 //    it('local', function() {

@@ -1,11 +1,11 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
-var CombineDecorator = require('../lib/fetcher/decorator/combiner');
-var LocalFetcher = require('../lib/fetcher/local');
+var Combiner = require('../').Combiner;
+var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
-var getFieldAs = require('../lib/util/get-field-as');
-var Cascade = require('../lib/cascade');
+var getFieldAs = require('../').getFieldAs;
+var Cascade = require('../').Cascade;
 
 describe('combiner decorator', function() {
    
@@ -28,7 +28,7 @@ describe('combiner decorator', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new CombineDecorator(fetcher, {
+        var cascade = new Cascade(new Combiner(fetcher, {
             wait: 10
         }));
 
@@ -51,7 +51,7 @@ describe('combiner decorator', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new CombineDecorator(fetcher, {
+        var cascade = new Cascade(new Combiner(fetcher, {
             wait: 20
         }));
 
@@ -90,7 +90,7 @@ describe('combiner decorator', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new CombineDecorator(fetcher, {
+        var cascade = new Cascade(new Combiner(fetcher, {
             wait: 20
         }));
 
@@ -130,7 +130,7 @@ describe('combiner decorator', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new CombineDecorator(fetcher, {
+        var cascade = new Cascade(new Combiner(fetcher, {
             wait: 20
         }));
 

@@ -2,13 +2,13 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
-var ErrorRejector = require('../lib/fetcher/decorator/error-rejector');
-var Combiner = require('../lib/fetcher/decorator/combiner');
+var ErrorRejector = require('../').ErrorRejector;
+var Combiner = require('../').Combiner;
 
-var LocalFetcher = require('../lib/fetcher/local');
+var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
-var getFieldAs = require('../lib/util/get-field-as');
-var Cascade = require('../lib/cascade');
+var getFieldAs = require('../').getFieldAs;
+var Cascade = require('../').Cascade;
 
 describe('error rejector combiner', function() {
     var ERROR = 'bala bala';

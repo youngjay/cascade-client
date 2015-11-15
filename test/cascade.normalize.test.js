@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
-var Cascade = require('../lib/cascade');
+var Cascade = require('../').Cascade;
 
 describe('remote cascade', function() {
     it('query should call fetcher with right args', function() {
