@@ -10,7 +10,7 @@ var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
 var Cascade = require('../').Cascade;
 
-describe('error rejector combiner', function() {
+describe('ErrorRejector with Combiner', function() {
     var ERROR = 'bala bala';
    
     var repo = {
@@ -76,9 +76,7 @@ describe('error rejector combiner', function() {
                 check(ex);
             }
             return Promise.reject(e)
-        }).then(function(data) {
-            console.log(data)
-            check('p1 should not resolve')
+        }).then(function(data) {            check('p1 should not resolve')
         });
 
         p2.then(function(data) {

@@ -1,7 +1,14 @@
 var expect = require('chai').expect;
 var getFieldAs = require('../').getFieldAs;
 
-describe('field', function() {
+describe('getFieldAs', function() {
+    it('should return as', function() {
+        expect(getFieldAs({
+            type: 'User',
+            as: 'person'
+        })).equal('person')
+    });
+
     it('should return type when no category is specified', function() {
         expect(getFieldAs({
             type: 'User'

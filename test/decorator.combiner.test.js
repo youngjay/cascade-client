@@ -7,7 +7,7 @@ var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
 var Cascade = require('../').Cascade;
 
-describe('combiner decorator', function() {
+describe('Combiner', function() {
    
     var repo = {
         User: {

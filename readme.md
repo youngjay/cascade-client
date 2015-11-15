@@ -16,9 +16,30 @@ LocalFetcher: 是用本地数据来模拟后端的cascade返回
 decorator类似于java的一系列stream, 会对传入的fetcher附加一些功能
 他的实现有：
 
-Combiner: 可以合并一定时间段内的cascade请求
+- Combiner: 可以合并一定时间段内的cascade请求
 
-ErrorRejector: 可以把返回数据里面的错误提取出来，走到异常处理流程
+```
+var Combiner = require('cascade').Combiner;
+var cascade = new Cascade(new Combiner(fetcher, {
+    wait: 100 // 合并100ms内的请求
+}))
+```
+
+- ErrorRejector: 可以把返回数据里面的错误提取出来，走到异常处理流程
+
+```
+var ErrorRejector = require('cascade').ErrorRejector;
+var cascade = new Cascade(new ErrorRejector(fetcher));
+```
+
+- Cacher: 可以缓存type或者type+category，缓存使用 type + category + params 作为key。只能缓存根节点数据
+
+```
+var Cacher = require('cascade').Cacher;
+var cascade = new Cascade(new Cacher(fetcher, {
+    fields: [{type: 'User'}]
+}))
+```
 
 ## cascade
 

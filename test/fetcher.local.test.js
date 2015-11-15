@@ -6,7 +6,7 @@ var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
 
-describe('local fetcher', function() {
+describe('LocalFetcher', function() {
     it('local repo for category as return value', function(done) {
         var Jay = {
             name: 'Jay'

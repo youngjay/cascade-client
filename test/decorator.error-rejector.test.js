@@ -8,7 +8,7 @@ var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
 var Cascade = require('../').Cascade;
 
-describe('error rejector', function() {
+describe('ErrorRejector', function() {
     var ERROR = 'bala bala';
    
     var repo = {
