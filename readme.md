@@ -32,7 +32,7 @@ var ErrorRejector = require('cascade').ErrorRejector;
 var cascade = new Cascade(new ErrorRejector(fetcher));
 ```
 
-- Cacher: 可以缓存type或者type+category，缓存使用 type + category + params 作为key。只能缓存根节点数据
+- Cacher: 可以缓存type或者type+category，缓存使用 type + category + params 作为key。只缓存没有children的根节点数据。
 
 ```
 var Cacher = require('cascade').Cacher;
@@ -51,15 +51,13 @@ cascade是最终使用的接口，他有一个query方法
 import {Cascade, LocalFetcher, Combiner} from 'cascade-client';
 import Fetcher from 'cascade-fetcher-dpapp'
 
-
-// 这段代码的意思是，如果使用mock数据的话，生成一个LocalFetcher，如果不是的话，则使用dpapp的fetcher
 let cascade = new Cascade(location.href.indexOf('localhost') !== -1 ? new LocalFetcher({
     User: {
         query: {
             name: 'Jay'
         }
     }
-}) : new Combiner(new Fetcher('https://a.dper.com' + url)));
+}) : new Combiner(new Fetcher('https://a.dper.com/shd/query')));
 
 // query 方法返回一个promise
 cascade.query([{type:'User'}]).then(function(data) {
