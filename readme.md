@@ -1,18 +1,35 @@
 # cascade-client
 
-[cascade-java](http://code.dianpingoa.com/cascade/cascade-java/tree/master)
-
 ## fetcher
 
 fetcher是表示一个获取数据的接口，它实现fetch(fields) 方法
 
 它的实现有：
 
-LocalFetcher: 是用本地数据来模拟后端的cascade返回
+- LocalFetcher: 是用本地数据来模拟后端的cascade返回
 
-[DPAPPFetcher](http://code.dianpingoa.com/cascade/cascade-fetcher-dpapp/blob/master/index.js)： 基于dpapp的fetcher
+```
+var fetcher = new require('cascade-client').LocalFetcher({
+    User: {
+        query: {
+            name: 'Jay'
+        }
+    }
+});
+```
 
-[HTTPFetcher](http://code.dianpingoa.com/cascade/cascade-fetcher-http/blob/master/index.js): 基于web的fetcher
+- [DPAPPFetcher](http://code.dianpingoa.com/cascade/cascade-fetcher-dpapp/blob/master/index.js)： 基于dpapp的fetcher
+
+```
+var fetcher = new (require('cascade-fetcher-dpapp'))('https://a.dper.com/shd/query');
+```
+
+- [HTTPFetcher](http://code.dianpingoa.com/cascade/cascade-fetcher-http/blob/master/index.js): 基于web的fetcher
+
+
+```
+var fetcher = new (require('cascade-fetcher-http'))('https://a.dper.com/shd/query');
+```
 
 ## decorator
 decorator类似于java的一系列stream, 会对传入的fetcher附加一些功能
@@ -68,3 +85,8 @@ cascade.query([{type:'User'}]).then(function(data) {
 
 
 ```
+
+
+## 服务端
+
+[cascade-java](http://code.dianpingoa.com/cascade/cascade-java/tree/master)
