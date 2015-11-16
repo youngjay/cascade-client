@@ -1,3 +1,4 @@
 node_modules
 .idea
 neurons
+npm-debug.log
