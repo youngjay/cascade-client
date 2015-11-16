@@ -51,11 +51,15 @@ cascade是最终使用的接口，他有一个query方法
 import {Cascade, LocalFetcher, Combiner} from 'cascade-client';
 import Fetcher from 'cascade-fetcher-dpapp'
 
-// 是否使用mock数据
-import {USE_MOCK} from './is-mock';
 
 // 这段代码的意思是，如果使用mock数据的话，生成一个LocalFetcher，如果不是的话，则使用dpapp的fetcher
-let cascade = new Cascade(USE_MOCK ? new LocalFetcher(cascadeMock) : new Combiner(new Fetcher('https://a.dper.com' + url)));
+let cascade = new Cascade(location.href.indexOf('localhost') !== -1 ? new LocalFetcher({
+    User: {
+        query: {
+            name: 'Jay'
+        }
+    }
+}) : new Combiner(new Fetcher('https://a.dper.com' + url)));
 
 // query 方法返回一个promise
 cascade.query([{type:'User'}]).then(function(data) {

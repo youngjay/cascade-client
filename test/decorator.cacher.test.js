@@ -262,6 +262,54 @@ describe('Cacher', function() {
             }
         }, 20)
 
+    });
+
+        it('cahce works for type', function(done) {
+        
+
+        var fetcher = new LocalFetcher(repo);
+
+        var spy = sinon.spy(fetcher, 'fetch');
+
+        var cascade = new Cascade(new Cacher(fetcher, {
+            fields: [{type: 'User'}]
+        }))
+
+        var r1, r2;
+
+        cascade.query([{
+           type: 'User',
+           as: 'aa'
+        }]).then(function(data) {
+            r1 = data;
+        })
+
+        cascade.query([{
+           type: 'User'
+        }]).then(function(data) {
+            r2 = data;
+        });
+
+        setTimeout(function() {
+            try {
+                expect(r1).deep.equal({
+                    aa: {
+                        name: 'Jay'
+                    }
+                })
+                expect(r2).deep.equal({
+                    user: {
+                        name: 'Jay'
+                    }
+                })
+                expect(calledTimesOnType(spy.args, 'User').length).to.be.equal(1)
+                expect(spy.calledThrice).to.be.true;
+                done();
+            } catch (e) {
+                done(e)
+            }
+        }, 20)
+
     })
 
 })
