@@ -41,10 +41,10 @@ describe('Cacher', function() {
         var spy = sinon.spy(fetcher, 'fetch');
 
         var cascade = new Cascade(new Cacher(fetcher, {
-            fields: [{type: 'User'}]
+            fields: ['User']
         }))
 
-        var r1, r2;
+        var r1, r2, r3, r4;
 
         cascade.query([{
            type: 'User'
@@ -56,6 +56,20 @@ describe('Cacher', function() {
            type: 'User'
         }]).then(function(data) {
             r2 = data;
+        });
+
+        cascade.query([{
+           type: 'User',
+           category: 'load'
+        }]).then(function(data) {
+            r3 = data;
+        })
+
+        cascade.query([{
+           type: 'User',
+           category: 'load'
+        }]).then(function(data) {
+            r4 = data;
         });
 
         setTimeout(function() {
@@ -70,8 +84,17 @@ describe('Cacher', function() {
                         name: 'Jay'
                     }
                 })
-                expect(calledTimesOnType(spy.args, 'User').length).to.be.equal(1)
-                expect(spy.calledThrice).to.be.true;
+                expect(r3).deep.equal({
+                    user_load: {
+                        name: 'Tom'
+                    }
+                })
+                expect(r4).deep.equal({
+                    user_load: {
+                        name: 'Tom'
+                    }
+                })
+                expect(calledTimesOnType(spy.args, 'User').length).to.be.equal(2)               
                 done();
             } catch (e) {
                 done(e)
@@ -88,7 +111,7 @@ describe('Cacher', function() {
         var spy = sinon.spy(fetcher, 'fetch');
 
         var cascade = new Cascade(new Cacher(fetcher, {
-            fields: [{type: 'User', category: 'query'}]
+            fields: [['User', 'query']]
         }))
 
         var r1, r2, r3, r4;
@@ -161,7 +184,7 @@ describe('Cacher', function() {
         var spy = sinon.spy(fetcher, 'fetch');
 
         var cascade = new Cascade(new Cacher(fetcher, {
-            fields: [{type: 'User'}]
+            fields: ['User']
         }))
 
         var r1, r2;
@@ -216,7 +239,7 @@ describe('Cacher', function() {
         var spy = sinon.spy(fetcher, 'fetch');
 
         var cascade = new Cascade(new Cacher(fetcher, {
-            fields: [{type: 'User'}]
+            fields: ['User']
         }))
 
         var r1, r2;
@@ -272,7 +295,7 @@ describe('Cacher', function() {
         var spy = sinon.spy(fetcher, 'fetch');
 
         var cascade = new Cascade(new Cacher(fetcher, {
-            fields: [{type: 'User'}]
+            fields: ['User']
         }))
 
         var r1, r2;
@@ -302,8 +325,7 @@ describe('Cacher', function() {
                         name: 'Jay'
                     }
                 })
-                expect(calledTimesOnType(spy.args, 'User').length).to.be.equal(1)
-                expect(spy.calledThrice).to.be.true;
+                expect(calledTimesOnType(spy.args, 'User').length).to.be.equal(1)        
                 done();
             } catch (e) {
                 done(e)
