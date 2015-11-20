@@ -6,9 +6,9 @@ module.exports = {
     LocalFetcher: require('./lib/fetcher/local'),
 
     // decorator
-    Combiner: require('./lib/fetcher/decorator/combiner'),
-    ErrorRejector: require('./lib/fetcher/decorator/error-rejector'),
-    Cacher: require('./lib/fetcher/decorator/cacher'),
+    Combiner: require('./lib/decorator/combiner'),
+    ErrorRejector: require('./lib/decorator/error-rejector'),
+    Cacher: require('./lib/decorator/cacher'),
 
     // util
     getFieldAs: require('./lib/util/get-field-as')

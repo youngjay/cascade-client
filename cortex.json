@@ -7,8 +7,7 @@
     "assert": "*"
   },
   "dependencies": {
-    "lodash": "^3.10.1",
-    "mixin-class": "^2.0.2"
+    "lodash": "^3.10.1"
   },
   "repository": "git://code.dianpingoa.com/cascade/cascade-client.git",
   "keywords": [
