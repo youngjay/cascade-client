@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^3.10.1",
-    "mixin-class": "^3.0.0"
+    "mixin-class": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^3.4.0",
