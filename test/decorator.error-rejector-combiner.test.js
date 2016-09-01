@@ -70,7 +70,7 @@ describe('ErrorRejector with Combiner', function() {
 
         p1.catch(function(e) {
             try {
-                expect(e).equal(ERROR);
+                expect(e.message).equal(ERROR);
                 check()
             } catch (ex) {
                 check(ex);

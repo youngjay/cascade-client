@@ -43,7 +43,7 @@ describe('ErrorRejector', function() {
             type: 'User'
         }]).catch(function(e) {
             try {
-                expect(e).equal(ERROR)
+                expect(e.message).equal(ERROR)
                 done();
             } catch (ex) {
                 done(ex)
@@ -76,7 +76,7 @@ describe('ErrorRejector', function() {
             }]
         }]).catch(function(e) {
             try {
-                expect(e).equal(ERROR + '; ' + ERROR)
+                expect(e.message).equal(ERROR + '; ' + ERROR)
                 done();
             } catch (ex) {
                 done(ex)

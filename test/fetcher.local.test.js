@@ -1,4 +1,5 @@
 var expect = require('chai').expect;
+var assert = require('chai').assert;
 var sinon = require('sinon');
 
 var Cascade = require('../').Cascade;
@@ -155,6 +156,40 @@ describe('LocalFetcher', function() {
 
         cascade.query([field]).catch(function(e) {
             expect(e).not.to.be.null
+        })
+    })
+
+
+    it('should support primary types', function(done) {
+        var repo = {
+            User: {
+                query: [1,2]
+            },
+
+            Book: {
+                byUser: (field) => {
+                    return {
+                        name: 'book'
+                    }
+                }
+            }
+        };
+
+        var field = {
+            type: 'User',
+            children: [{
+                type: 'Book',
+                category: 'byUser',
+                as: 'book'
+            }]
+        };
+
+        var cascade = new Cascade(new LocalFetcher(repo));
+
+        checkPromise(cascade.query([field]), done, function(data) {
+            assert.equal(2, data.user.length)
+            assert.equal('book', data.user[0].book.name)
+            
         })
     })
 })
