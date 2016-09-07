@@ -188,8 +188,7 @@ describe('LocalFetcher', function() {
 
         checkPromise(cascade.query([field]), done, function(data) {
             assert.equal(2, data.user.length)
-            assert.equal('book', data.user[0].book.name)
-            
+            assert.equal('book', data.user[0].book.name)            
         })
     })
 })
