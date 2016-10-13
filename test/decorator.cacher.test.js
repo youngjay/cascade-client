@@ -46,26 +46,26 @@ describe('Cacher', function() {
 
         var r1, r2, r3, r4;
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User'
         }]).then(function(data) {
             r1 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User'
         }]).then(function(data) {
             r2 = data;
         });
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            category: 'load'
         }]).then(function(data) {
             r3 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            category: 'load'
         }]).then(function(data) {
@@ -116,26 +116,26 @@ describe('Cacher', function() {
 
         var r1, r2, r3, r4;
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User'
         }]).then(function(data) {
             r1 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User'
         }]).then(function(data) {
             r2 = data;
         });
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            category: 'load'
         }]).then(function(data) {
             r3 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            category: 'load'
         }]).then(function(data) {
@@ -189,7 +189,7 @@ describe('Cacher', function() {
 
         var r1, r2;
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            params: {
                 a: 1,
@@ -199,7 +199,7 @@ describe('Cacher', function() {
             r1 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            params: {
                 a: 2,
@@ -244,7 +244,7 @@ describe('Cacher', function() {
 
         var r1, r2;
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            params: {
                 a: 1,
@@ -254,7 +254,7 @@ describe('Cacher', function() {
             r1 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            params: {
                 
@@ -300,14 +300,14 @@ describe('Cacher', function() {
 
         var r1, r2;
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User',
            as: 'aa'
         }]).then(function(data) {
             r1 = data;
         })
 
-        cascade.query([{
+        cascade.fetch([{
            type: 'User'
         }]).then(function(data) {
             r2 = data;

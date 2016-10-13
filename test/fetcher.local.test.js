@@ -25,7 +25,7 @@ describe('LocalFetcher', function() {
             type: 'User'
         };
 
-        checkPromise(cascade.query([field]), done, function(data) {
+        checkPromise(cascade.fetch([field]), done, function(data) {
             var o = {};
             o[getFieldAs(field)] = Jay;
             expect(data).to.deep.equal(o)
@@ -52,7 +52,7 @@ describe('LocalFetcher', function() {
             type: 'User'
         };
 
-        checkPromise(cascade.query([field]), done, function(data) {
+        checkPromise(cascade.fetch([field]), done, function(data) {
             var o = {};
             o[getFieldAs(field)] = Jay;
             expect(data).to.deep.equal(o)
@@ -112,7 +112,7 @@ describe('LocalFetcher', function() {
 
         var cascade = new Normalizer(new LocalFetcher(repo));
 
-        checkPromise(cascade.query([{
+        checkPromise(cascade.fetch([{
             type: 'A1',
             params: {
                 c1: 1
@@ -154,7 +154,7 @@ describe('LocalFetcher', function() {
 
         var cascade = new Normalizer(new LocalFetcher(repo));
 
-        cascade.query([field]).catch(function(e) {
+        cascade.fetch([field]).catch(function(e) {
             expect(e).not.to.be.null
         })
     })
@@ -186,7 +186,7 @@ describe('LocalFetcher', function() {
 
         var cascade = new Normalizer(new LocalFetcher(repo));
 
-        checkPromise(cascade.query([field]), done, function(data) {
+        checkPromise(cascade.fetch([field]), done, function(data) {
             assert.equal(2, data.user.length)
             assert.equal('book', data.user[0].book.name)            
         })

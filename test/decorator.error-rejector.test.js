@@ -39,7 +39,7 @@ describe('ErrorRejector', function() {
 
         var cascade = new Normalizer(new ErrorRejector(fetcher));
 
-        cascade.query([{
+        cascade.fetch([{
             type: 'User'
         }]).catch(function(e) {
             try {
@@ -57,7 +57,7 @@ describe('ErrorRejector', function() {
         var cascade = new Normalizer(new ErrorRejector(fetcher));
 
 
-        checkPromise(cascade.query([{
+        checkPromise(cascade.fetch([{
             type: 'Book'
         }]), done, function() {})
         
@@ -69,7 +69,7 @@ describe('ErrorRejector', function() {
 
         var cascade = new Normalizer(new ErrorRejector(fetcher));
 
-        cascade.query([{
+        cascade.fetch([{
             type: 'Car',
             children: [{
                 type: 'User'

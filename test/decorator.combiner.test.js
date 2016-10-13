@@ -32,7 +32,7 @@ describe('Combiner', function() {
             wait: 10
         }));
 
-        checkPromise(cascade.query([{
+        checkPromise(cascade.fetch([{
             type: 'User'
         }]), done, function(data) {
             expect(spy.calledOnce).to.be.true;
@@ -55,13 +55,13 @@ describe('Combiner', function() {
             wait: 20
         }));
 
-        var p1 = cascade.query([{
+        var p1 = cascade.fetch([{
             type: 'User'
         }]);
 
         clock.tick(10);
 
-        var p2 = cascade.query([{
+        var p2 = cascade.fetch([{
             type: 'Book'
         }]);
 
@@ -94,13 +94,13 @@ describe('Combiner', function() {
             wait: 20
         }));
 
-        var p1 = cascade.query([{
+        var p1 = cascade.fetch([{
             type: 'User'
         }]);
 
         clock.tick(30);
 
-        var p2 = cascade.query([{
+        var p2 = cascade.fetch([{
             type: 'Book'
         }]);
 
@@ -134,20 +134,20 @@ describe('Combiner', function() {
             wait: 20
         }));
 
-        var p1 = cascade.query([{
+        var p1 = cascade.fetch([{
             type: 'User'
         }]);
 
-        var p2 = cascade.query([{
+        var p2 = cascade.fetch([{
             type: 'User'
         }]);
 
-        var p3 = cascade.query([{
+        var p3 = cascade.fetch([{
             type: 'User',
             as: 'u'
         }]);
 
-        var p4 = cascade.query([{
+        var p4 = cascade.fetch([{
             type: 'User',
             as: 'u'
         }]);

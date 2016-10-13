@@ -10,7 +10,7 @@ describe('field normalize', function() {
         var cascade = new Normalizer({
             fetch: spyFetcher
         });
-        cascade.query({
+        cascade.fetch({
             type: 'User'
         });
 
@@ -21,7 +21,7 @@ describe('field normalize', function() {
             children: []
         }])
 
-        cascade.query([{
+        cascade.fetch([{
             params: {
                 a: 1
             },

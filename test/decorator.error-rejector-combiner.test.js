@@ -47,11 +47,11 @@ describe('ErrorRejector with Combiner', function() {
             )
         );
 
-        var p1 = cascade.query([{
+        var p1 = cascade.fetch([{
             type: 'User'
         }]);
 
-        var p2 = cascade.query([{
+        var p2 = cascade.fetch([{
             type: 'Car'
         }]);
 
