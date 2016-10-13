@@ -5,7 +5,7 @@ var Cacher = require('../').Cacher;
 var checkPromise = require('./util/check-promise');
 var LocalFetcher = require('../').LocalFetcher;
 var getFieldAs = require('../').getFieldAs;
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 
 var calledTimesOnType = function(argsArray, type, category) {
     return argsArray.reduce(function(ret, args) {
@@ -40,7 +40,7 @@ describe('Cacher', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');
 
-        var cascade = new Cascade(new Cacher(fetcher, {
+        var cascade = new Normalizer(new Cacher(fetcher, {
             fields: ['User']
         }))
 
@@ -110,7 +110,7 @@ describe('Cacher', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');
 
-        var cascade = new Cascade(new Cacher(fetcher, {
+        var cascade = new Normalizer(new Cacher(fetcher, {
             fields: [['User', 'query']]
         }))
 
@@ -183,7 +183,7 @@ describe('Cacher', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');
 
-        var cascade = new Cascade(new Cacher(fetcher, {
+        var cascade = new Normalizer(new Cacher(fetcher, {
             fields: ['User']
         }))
 
@@ -238,7 +238,7 @@ describe('Cacher', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');
 
-        var cascade = new Cascade(new Cacher(fetcher, {
+        var cascade = new Normalizer(new Cacher(fetcher, {
             fields: ['User']
         }))
 
@@ -294,7 +294,7 @@ describe('Cacher', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');
 
-        var cascade = new Cascade(new Cacher(fetcher, {
+        var cascade = new Normalizer(new Cacher(fetcher, {
             fields: ['User']
         }))
 

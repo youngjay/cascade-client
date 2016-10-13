@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 var sinon = require('sinon');
 
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
@@ -19,7 +19,7 @@ describe('LocalFetcher', function() {
             }
         };
 
-        var cascade = new Cascade(new LocalFetcher(repo));
+        var cascade = new Normalizer(new LocalFetcher(repo));
 
         var field = {
             type: 'User'
@@ -46,7 +46,7 @@ describe('LocalFetcher', function() {
             }
         };
 
-        var cascade = new Cascade(new LocalFetcher(repo));
+        var cascade = new Normalizer(new LocalFetcher(repo));
 
         var field = {
             type: 'User'
@@ -110,7 +110,7 @@ describe('LocalFetcher', function() {
             }
         }
 
-        var cascade = new Cascade(new LocalFetcher(repo));
+        var cascade = new Normalizer(new LocalFetcher(repo));
 
         checkPromise(cascade.query([{
             type: 'A1',
@@ -152,7 +152,7 @@ describe('LocalFetcher', function() {
             type: 'User'
         };
 
-        var cascade = new Cascade(new LocalFetcher(repo));
+        var cascade = new Normalizer(new LocalFetcher(repo));
 
         cascade.query([field]).catch(function(e) {
             expect(e).not.to.be.null
@@ -184,7 +184,7 @@ describe('LocalFetcher', function() {
             }]
         };
 
-        var cascade = new Cascade(new LocalFetcher(repo));
+        var cascade = new Normalizer(new LocalFetcher(repo));
 
         checkPromise(cascade.query([field]), done, function(data) {
             assert.equal(2, data.user.length)

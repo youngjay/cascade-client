@@ -5,7 +5,7 @@ var Combiner = require('../').Combiner;
 var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 
 describe('Combiner', function() {
    
@@ -28,7 +28,7 @@ describe('Combiner', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new Combiner(fetcher, {
+        var cascade = new Normalizer(new Combiner(fetcher, {
             wait: 10
         }));
 
@@ -51,7 +51,7 @@ describe('Combiner', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new Combiner(fetcher, {
+        var cascade = new Normalizer(new Combiner(fetcher, {
             wait: 20
         }));
 
@@ -90,7 +90,7 @@ describe('Combiner', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new Combiner(fetcher, {
+        var cascade = new Normalizer(new Combiner(fetcher, {
             wait: 20
         }));
 
@@ -130,7 +130,7 @@ describe('Combiner', function() {
 
         var spy = sinon.spy(fetcher, 'fetch');      
 
-        var cascade = new Cascade(new Combiner(fetcher, {
+        var cascade = new Normalizer(new Combiner(fetcher, {
             wait: 20
         }));
 

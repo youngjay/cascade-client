@@ -6,7 +6,7 @@ var ErrorRejector = require('../').ErrorRejector;
 var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 
 describe('ErrorRejector', function() {
     var ERROR = 'bala bala';
@@ -37,7 +37,7 @@ describe('ErrorRejector', function() {
     it('should reject when error occurs', function(done) {
         var fetcher = new LocalFetcher(repo);
 
-        var cascade = new Cascade(new ErrorRejector(fetcher));
+        var cascade = new Normalizer(new ErrorRejector(fetcher));
 
         cascade.query([{
             type: 'User'
@@ -54,7 +54,7 @@ describe('ErrorRejector', function() {
     it('should resolve where no error occurs', function(done) {
         var fetcher = new LocalFetcher(repo);
 
-        var cascade = new Cascade(new ErrorRejector(fetcher));
+        var cascade = new Normalizer(new ErrorRejector(fetcher));
 
 
         checkPromise(cascade.query([{
@@ -67,7 +67,7 @@ describe('ErrorRejector', function() {
     it('should collect multiple errors', function(done) {
         var fetcher = new LocalFetcher(repo);
 
-        var cascade = new Cascade(new ErrorRejector(fetcher));
+        var cascade = new Normalizer(new ErrorRejector(fetcher));
 
         cascade.query([{
             type: 'Car',

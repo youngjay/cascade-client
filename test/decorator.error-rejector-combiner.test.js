@@ -8,7 +8,7 @@ var Combiner = require('../').Combiner;
 var LocalFetcher = require('../').LocalFetcher;
 var checkPromise = require('./util/check-promise');
 var getFieldAs = require('../').getFieldAs;
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 
 describe('ErrorRejector with Combiner', function() {
     var ERROR = 'bala bala';
@@ -39,7 +39,7 @@ describe('ErrorRejector with Combiner', function() {
     it('should reject errors and resolve correct data', function(done) {
         var fetcher = new LocalFetcher(repo);
 
-        var cascade = new Cascade(
+        var cascade = new Normalizer(
             new ErrorRejector(
                 new Combiner(fetcher, {
                     wait: 20

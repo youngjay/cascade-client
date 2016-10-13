@@ -1,13 +1,13 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
-var Cascade = require('../').Cascade;
+var Normalizer = require('../').Normalizer;
 
 describe('field normalize', function() {
     it('query should call fetcher with right args', function() {
         var spyFetcher = sinon.spy();
 
-        var cascade = new Cascade({
+        var cascade = new Normalizer({
             fetch: spyFetcher
         });
         cascade.query({
