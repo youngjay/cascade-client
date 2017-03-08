@@ -76,7 +76,12 @@ describe('ErrorRejector with Combiner', function() {
                 check(ex);
             }
             return Promise.reject(e)
-        }).then(function(data) {            check('p1 should not resolve')
+        }).then(function(data) {            
+            check('p1 should not resolve')
+        }).catch(function(error) {
+            if (!error) {
+                check('p1 should not resolve')
+            }
         });
 
         p2.then(function(data) {
