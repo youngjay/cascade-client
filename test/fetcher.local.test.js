@@ -224,6 +224,12 @@ describe('LocalFetcher', function() {
                     type: 'Book',
                     category: 'byUser',
                     as: 'book'
+                },
+                {
+                    inherit: 'items',
+                    type: 'Book',
+                    category: 'byUser',
+                    as: 'book3'
                 }
             ]
         };
@@ -234,7 +240,10 @@ describe('LocalFetcher', function() {
             assert.equal(2, data.user.items.length)
             assert.equal(2, data.user.items2.length)
 
-            assert.equal("book", data.user.items[0].book.name)         
+            assert.equal("book", data.user.items[0].book.name)  
+            assert.equal("book", data.user.items[0].book3.name)  
+
+            console.log(JSON.stringify(data.user))        
         })
 
     })
