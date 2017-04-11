@@ -1,6 +1,6 @@
 {
   "name": "cascade-client",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^3.10.1",
-    "mixin-class": "^3.0.1"
+    "mixin-class": "^3.0.3"
   },
   "devDependencies": {
     "chai": "^3.4.0",
