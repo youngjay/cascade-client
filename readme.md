@@ -9,9 +9,12 @@ fetcher是表示一个获取数据的接口，它实现fetch(fields) 方法
 - LocalFetcher: 是用本地数据来模拟后端的cascade返回
 
 ```
-var fetcher = new require('cascade-client').LocalFetcher({
+import {LocalFetcher} from 'cascade-client'
+var fetcher = new LocalFetcher({
+    // type
     User: {
-        query: {
+        // category
+        query: { // return value
             name: 'Jay'
         }
     }
@@ -32,54 +35,51 @@ var fetcher = new (require('cascade-fetcher-http'))('https://a.dper.com/shd/quer
 ```
 
 ## decorator
-decorator类似于java的一系列stream, 会对传入的fetcher附加一些功能
+decorator会对传入的fetcher附加一些功能
 他的实现有：
 
 - Combiner: 可以合并一定时间段内的cascade请求
 
 ```
-var Combiner = require('cascade-client').Combiner;
-var cascade = new Cascade(new Combiner(fetcher, {
+var Combiner = import {Combiner} from 'cascade-client';
+var cascade = new Combiner(fetcher, {
     wait: 100 // 合并100ms内的请求
-}))
+})
 ```
 
 - ErrorRejector: 可以把返回数据里面的错误提取出来，走到异常处理流程
 
 ```
-var ErrorRejector = require('cascade-client').ErrorRejector;
-var cascade = new Cascade(new ErrorRejector(fetcher));
+var ErrorRejector = import 'ErrorRejector' from 'cascade-client';
+var cascade = new ErrorRejector(fetcher);
 ```
 
 - Cacher: 可以缓存type或者type+category，缓存使用 type + category + params 作为key。只缓存没有children的根节点数据。
 
 ```
-var Cacher = require('cascade-client').Cacher;
-var cascade = new Cascade(new Cacher(fetcher, {
+var Cacher = import {Cacher} from 'cascade-client';
+var cascade = new Cacher(fetcher, {
     fields: [{type: 'User'}]
-}))
+})
 ```
 
-## cascade
-
-cascade是最终使用的接口，他有一个query方法
-
-## 一段代码例子
+## 组合起来
 
 ```
 import {Cascade, LocalFetcher, Combiner} from 'cascade-client';
-import Fetcher from 'cascade-fetcher-dpapp'
+import Fetcher from 'cascade-fetcher-http'
 
-let cascade = new Cascade(location.href.indexOf('localhost') !== -1 ? new LocalFetcher({
+let cascade = location.href.indexOf('localhost') !== -1 ? new LocalFetcher({
     User: {
         query: {
             name: 'Jay'
         }
     }
-}) : new Combiner(new Fetcher('https://a.dper.com/shd/query')));
+}) : new Combiner(new Fetcher('https://a.dper.com/shd/query'));
+
 
 // query 方法返回一个promise
-cascade.query([{type:'User'}]).then(function(data) {
+cascade.fetch([{type:'User'}]).then(function(data) {
     console.log(data)
 })
 
