@@ -12,6 +12,7 @@ var Normalizer = require('../').Normalizer;
 
 describe('ErrorRejector with Combiner', function() {
     var ERROR = 'bala bala';
+    var ERROR_REPLACE_TEXT = '系统繁忙,请稍候重试';
    
     var repo = {
         User: {
@@ -70,7 +71,7 @@ describe('ErrorRejector with Combiner', function() {
 
         p1.catch(function(e) {
             try {
-                expect(e.message).equal(ERROR);
+                expect(e.message).equal(ERROR_REPLACE_TEXT);
                 check()
             } catch (ex) {
                 check(ex);

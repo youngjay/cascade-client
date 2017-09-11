@@ -10,10 +10,15 @@ var Normalizer = require('../').Normalizer;
 
 describe('ErrorRejector', function() {
     var ERROR = 'bala bala';
+    var ERROR_REPLACE_TEXT = '系统繁忙,请稍候重试';
    
     var repo = {
         User: {
             query: '[Cascade Error] ' + ERROR
+        },
+
+        WarningUser: {
+            query: '[Cascade Warning] ' + ERROR
         },
 
         Car: {
@@ -43,6 +48,23 @@ describe('ErrorRejector', function() {
             type: 'User'
         }]).catch(function(e) {
             try {
+                expect(e.message).equal(ERROR_REPLACE_TEXT)
+                done();
+            } catch (ex) {
+                done(ex)
+            }
+        })        
+    })
+
+    it('should reject when warning occurs', function(done) {
+        var fetcher = new LocalFetcher(repo);
+
+        var cascade = new Normalizer(new ErrorRejector(fetcher));
+
+        cascade.fetch([{
+            type: 'WarningUser'
+        }]).catch(function(e) {
+            try {
                 expect(e.message).equal(ERROR)
                 done();
             } catch (ex) {
@@ -64,6 +86,8 @@ describe('ErrorRejector', function() {
     })
 
 
+
+
     it('should collect multiple errors', function(done) {
         var fetcher = new LocalFetcher(repo);
 
@@ -76,7 +100,7 @@ describe('ErrorRejector', function() {
             }]
         }]).catch(function(e) {
             try {
-                expect(e.message).equal(ERROR + '; ' + ERROR)
+                expect(e.message).equal(ERROR_REPLACE_TEXT + '; ' + ERROR_REPLACE_TEXT)
                 done();
             } catch (ex) {
                 done(ex)
